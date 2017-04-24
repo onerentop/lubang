@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/home', function () {
-//    return view('welcome');
-    return view('login');
+Route::get('/', function () {
+    return view('welcome');
+//    return view('login');
 });
 
 
