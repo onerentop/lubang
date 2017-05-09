@@ -27,6 +27,7 @@ Route::get('Home/login', 'Home\LoginController@login'); //登录
 Route::get('Home/duan', 'Home\CodeController@duan'); //发送短信验证码
 Route::any('Home/code', 'Home\CodeController@code'); //生成验证码
 Route::any('Home/validation', 'Home\CodeController@validation');  //验证验证码
+Route::any('Home/getFault', 'Home\CodeController@getFault');  //获取故障列表
 
 Route::any('Home/saveLocation', 'Home\LocationController@saveLocation');  //存储位置信息
 Route::any('Home/getData', 'Home\LocationController@getData');  //获取位置信息
