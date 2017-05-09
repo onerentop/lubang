@@ -116,4 +116,17 @@ class CodeController extends Controller
             return jsondata(0, '用户名或密码错误', []);
         }
     }
+
+    /**
+     * 获取故障列表
+     */
+    public function getFault()
+    {
+        $arr = DB::table('fault_type')->get();
+        if ($arr) {
+            jsondata(1, success, $arr);
+        } else {
+            jsondata(0, faile, []);
+        }
+    }
 }
