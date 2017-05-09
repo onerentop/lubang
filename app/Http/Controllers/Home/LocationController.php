@@ -98,6 +98,7 @@ class LocationController extends Controller
 //        }
         $tel = Input::get('tel');
         $money = Input::get('money');
+        $fault = Input::get('fault');
         $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
         $user_id = $user_id[0]->id;
         $location_id = DB::table('location')->select('id')->where(['user_id' => $user_id])->get()->toArray();
@@ -108,7 +109,6 @@ class LocationController extends Controller
             $lt = $res[0]->latitude;
             $userInfo = $this->getLocation1($lg, $lt);
             $userInfo = \GuzzleHttp\json_decode($userInfo);
-//            dd($userInfo);
             $res = $userInfo->data;
             $time = date("Y-m-d H:i:s");
             foreach ($res as $value) {
@@ -116,9 +116,9 @@ class LocationController extends Controller
                 $status = 1;
                 $service = DB::table("service_request")->where(['buyer_id' => $user_id, 'seller_id' => $rescue_id])->get();
                 if (!$service) {
-                    $result = DB::table('service_request')->insert(['buyer_id' => $user_id, 'seller_id' => $rescue_id, 'money' => $money, 'time' => $time, 'location_id' => $location_id, 'status' => $status]);
+                    $result = DB::table('service_request')->insert(['buyer_id' => $user_id, 'seller_id' => $rescue_id, 'fault' => $fault, 'money' => $money, 'time' => $time, 'location_id' => $location_id, 'status' => $status]);
                 } else {
-                    $result = DB::table('service_request')->where(['buyer_id' => $user_id, 'seller_id' => $rescue_id])->update(['money' => $money, 'time' => $time, 'location_id' => $location_id]);
+                    $result = DB::table('service_request')->where(['buyer_id' => $user_id, 'seller_id' => $rescue_id])->update(['money' => $money, 'time' => $time, 'fault' => $fault, 'location_id' => $location_id]);
                 }
 
                 if ($result) {
