@@ -108,7 +108,7 @@ class LocationController extends Controller
                 } else {
                     $result = DB::table('service_request')->where(['buyer_id' => $user_id, 'seller_id' => $user])->update(['money' => $money, 'time' => $time, 'fault' => $fault, 'location_id' => $location_id]);
                 }
-                dd($result);
+                dd($service);
 
                 if ($result) {
                     echo jsondata(1, '存储成功', []);
