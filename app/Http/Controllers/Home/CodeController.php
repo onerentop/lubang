@@ -62,6 +62,7 @@ class CodeController extends Controller
         $this->duan($tel, $num);
     }
 
+
     /*
      * 验证验证码
      */
