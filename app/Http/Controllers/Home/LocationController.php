@@ -100,6 +100,7 @@ class LocationController extends Controller
                 $rescue_id = $value->id;
                 $user = DB::table('location')->select('user_id')->where(['id' => $rescue_id])->get()->toArray();
                 $user = $user[0]->user_id;
+                dd($user);
                 $status = 1;
                 $service = DB::table("service_request")->where(['buyer_id' => $user_id, 'seller_id' => $user])->get();
                 if (!$service) {
