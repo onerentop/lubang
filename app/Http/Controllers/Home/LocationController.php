@@ -114,6 +114,7 @@ class LocationController extends Controller
             foreach ($res as $value) {
                 $rescue_id = $value->id;
                 $status = 1;
+                DB::table("service_request")->where(['buyer_id' => $user_id, 'seller_id' => $rescue_id])->delete();
                 $result = DB::table('service_request')->insert(['buyer_id' => $user_id, 'seller_id' => $rescue_id, 'money' => $money, 'time' => $time, 'location_id' => $location_id, 'status' => $status]);
                 if ($result) {
                     echo jsondata(1, '存储成功', []);
