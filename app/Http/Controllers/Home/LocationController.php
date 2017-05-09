@@ -118,7 +118,7 @@ class LocationController extends Controller
                 if (!$service) {
                     $result = DB::table('service_request')->insert(['buyer_id' => $user_id, 'seller_id' => $rescue_id, 'money' => $money, 'time' => $time, 'location_id' => $location_id, 'status' => $status]);
                 } else {
-                    $result = DB::table('service_request')->where(['buyer_id' => $user_id, 'seller_id' => $rescue_id])->data(['money' => $money, 'time' => $time, 'location_id' => $location_id, 'status' => $status])->update();
+                    $result = DB::table('service_request')->where(['buyer_id' => $user_id, 'seller_id' => $rescue_id])->update(['money' => $money, 'time' => $time, 'location_id' => $location_id]);
                 }
 
                 if ($result) {
