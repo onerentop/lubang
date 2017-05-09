@@ -115,7 +115,6 @@ class LocationController extends Controller
                 $rescue_id = $value->id;
                 $status = 1;
                 $result = DB::table('service_request')->insert(['buyer_id' => $user_id, 'seller_id' => $rescue_id, 'money' => $money, 'time' => $time, 'location_id' => $location_id, 'status' => $status]);
-                dd($result);
                 if ($result) {
                     echo jsondata(1, '存储成功', []);
                 } else {
