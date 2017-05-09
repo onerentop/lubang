@@ -58,7 +58,7 @@ class CodeController extends Controller
     {
         $tel = Input::get('tel');
         $num = mt_rand(100000, 999999);
-        DB::table('validation')->insert(['tel' => $tel, 'code' => $num]);
+        DB::table('verify')->insert(['tel' => $tel, 'code' => $num]);
         $this->duan($tel, $num);
     }
 
