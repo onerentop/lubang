@@ -73,7 +73,10 @@ class CodeController extends Controller
         $tel = Input::get('tel');
         $results = DB::select('SELECT * FROM (SELECT  * FROM `lb_verify`  ORDER BY id DESC LIMIT 1) AS a WHERE code =? and tel = ?', [$code, $tel]);
         if ($results) {
-            DB::table('users')->insert(['tel' => $tel, 'username' => $tel]);
+            $re = DB::table('users')->where(['tel' => $tel])->get();
+            if (!$re) {
+                DB::table('users')->insert(['tel' => $tel, 'username' => $tel]);
+            }
             return jsondata(1, '验证码正确', []);
         } else {
             return jsondata(0, '验证码错误', []);
