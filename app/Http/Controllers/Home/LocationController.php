@@ -111,6 +111,7 @@ class LocationController extends Controller
 //            dd($userInfo);
             $res = $userInfo->data;
             $time = date("Y-m-d H:i:s");
+            dd($res);
             foreach ($res as $value) {
                 $rescue_id = $value->id;
                 $status = 1;
