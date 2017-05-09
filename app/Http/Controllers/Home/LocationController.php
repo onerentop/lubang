@@ -100,7 +100,7 @@ class LocationController extends Controller
                 $rescue_id = $value->id;
                 $user = DB::table('location')->select('user_id')->where(['id' => $rescue_id])->get()->toArray();
                 $user = $user[0]->user_id;
-                dd($user);
+//                dd($user);
                 $status = 1;
                 $service = DB::table("service_request")->where(['buyer_id' => $user_id, 'seller_id' => $user])->get();
                 if (!$service) {
@@ -108,6 +108,7 @@ class LocationController extends Controller
                 } else {
                     $result = DB::table('service_request')->where(['buyer_id' => $user_id, 'seller_id' => $user])->update(['money' => $money, 'time' => $time, 'fault' => $fault, 'location_id' => $location_id]);
                 }
+                dd($result);
 
                 if ($result) {
                     echo jsondata(1, '存储成功', []);
