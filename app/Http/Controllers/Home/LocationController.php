@@ -69,7 +69,6 @@ class LocationController extends Controller
         foreach ($result as $value) {
             $arr[] = $value;
         }
-        dd($result);
         return jsondata(1, '位置信息', $arr);
     }
 
@@ -112,7 +111,6 @@ class LocationController extends Controller
 //            dd($userInfo);
             $res = $userInfo->data;
             $time = date("Y-m-d H:i:s");
-            dd($userInfo);
             foreach ($res as $value) {
                 $rescue_id = $value->id;
                 $status = 1;
