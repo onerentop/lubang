@@ -29,6 +29,8 @@ class LocationController extends Controller
     public function saveLocation($lg, $lt, $tel, $address_info)
     {
         $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get();
+        dd($user_id);
+        die();
         DB::table('location')->where('user_id', '=', $user_id)->delete();
         $result = DB::table('location')->insert(['user_id' => $user_id, 'longitude' => $lg, 'latitude' => $lt, 'address_info' => $address_info]);
         if ($result) {
