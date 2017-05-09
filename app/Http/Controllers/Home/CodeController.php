@@ -124,9 +124,9 @@ class CodeController extends Controller
     {
         $arr = DB::table('fault_type')->get();
         if ($arr) {
-            jsondata(1, success, $arr);
+            return jsondata(1, success, $arr);
         } else {
-            jsondata(0, faile, []);
+            return jsondata(0, faile, []);
         }
     }
 }
