@@ -30,8 +30,12 @@ class LocationController extends Controller
     {
         $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
         $user_id = $user_id[0]->id;
-        DB::table('location')->where('user_id', '=', $user_id)->delete();
-        $result = DB::table('location')->insert(['user_id' => $user_id, 'longitude' => $lg, 'latitude' => $lt, 'address_info' => $address_info]);
+        $re = DB::table('location')->where('user_id', '=', $user_id)->get();
+        if ($re) {
+            $result = DB::table('location')->where(['user_id' => $user_id])->update(['longitude' => $lg, 'latitude' => $lt, 'address_info' => $address_info]);
+        } else {
+            $result = DB::table('location')->insert(['user_id' => $user_id, 'longitude' => $lg, 'latitude' => $lt, 'address_info' => $address_info]);
+        }
         if ($result) {
             echo jsondata(1, '存储成功', []);
         } else {
