@@ -65,7 +65,7 @@ class LocationController extends Controller
         $arr = [];
         $lg1 = $lg + 1;
         $lt1 = $lt + 1;
-        $result = DB::table('location')->whereBetween('longitude', [$lg, $lg1])->whereBetween('latitude', [$lt, $lt1])->get();
+        $result = DB::table('location')->where('longitude', '>', $lg)->whereBetween('longitude', [$lg, $lg1])->whereBetween('latitude', [$lt, $lt1])->get();
         foreach ($result as $value) {
             $arr[] = $value;
         }
