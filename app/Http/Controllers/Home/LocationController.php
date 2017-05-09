@@ -62,6 +62,7 @@ class LocationController extends Controller
     */
     public function getLocation1($lg, $lt)
     {
+        $arr = [];
         $lg1 = $lg + 1;
         $lt1 = $lt + 1;
         $result = DB::table('location')->where('longitude', '>', $lg)->whereBetween('longitude', [$lg, $lg1])->whereBetween('latitude', [$lt, $lt1])->get();
