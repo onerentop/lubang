@@ -69,7 +69,7 @@ class LocationController extends Controller
         foreach ($result as $value) {
             $arr[] = $value;
         }
-        dd($result);
+        dd($lg);
         return jsondata(1, '位置信息', $arr);
     }
 
