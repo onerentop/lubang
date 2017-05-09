@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Symfony\Component\Console\Helper\Table;
 
 class LocationController extends Controller
 {
@@ -27,8 +28,9 @@ class LocationController extends Controller
      */
     public function saveLocation($lg, $lt, $tel, $address_info)
     {
-        DB::table('location')->where('tel', '=', $tel)->delete();
-        $result = DB::table('location')->insert(['tel' => $tel, 'longitude' => $lg, 'latitude' => $lt, 'address_info' => $address_info]);
+        $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get();
+        DB::table('location')->where('user_id', '=', $user_id)->delete();
+        $result = DB::table('location')->insert(['user_id' => $user_id, 'longitude' => $lg, 'latitude' => $lt, 'address_info' => $address_info]);
         if ($result) {
             echo jsondata(1, '存储成功', []);
         } else {
