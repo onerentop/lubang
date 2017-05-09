@@ -96,7 +96,12 @@ class LocationController extends Controller
 //            }
 //        }
         $tel = Input::get('tel');
-        $res = DB::table('location')->where('tel', '=', $tel)->get();
+        $money = Input::get('money');
+        $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
+        $user_id = $user_id[0]->id;
+        $location_id = DB::table('location')->select('id')->where(['user_id' => $user_id])->get()->toArray();
+        $location_id = $location_id[0]->id;
+        $res = DB::table('location')->where('user_id', '=', $user_id)->get();
         if ($res) {
             $lg = $res[0]->longitude;
             $lt = $res[0]->latitude;
@@ -104,10 +109,11 @@ class LocationController extends Controller
             $userInfo = \GuzzleHttp\json_decode($userInfo);
 //            dd($userInfo);
             $res = $userInfo->data;
+            $time = date("Y-m-d H:i:s");
             foreach ($res as $value) {
                 $rescue_id = $value->id;
                 $status = 1;
-                $result = DB::table('helpList')->insert(['rescue_id' => $rescue_id, 'patient_tel' => $tel, 'status' => $status]);
+                $result = DB::table('service_request')->insert(['buyer_id' => $user_id, 'seller_id' => $rescue_id, 'money' => $money, 'time' => $time, 'location_id' => $location_id, 'status' => $status]);
                 if ($result) {
                     echo jsondata(1, '存储成功', []);
                 } else {
