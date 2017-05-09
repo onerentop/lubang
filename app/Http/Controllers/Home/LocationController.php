@@ -100,7 +100,6 @@ class LocationController extends Controller
                 $rescue_id = $value->id;
                 $user = DB::table('location')->select('user_id')->where(['id' => $rescue_id])->get()->toArray();
                 $user = $user[0]->user_id;
-//                dd($user);
                 $status = 1;
                 $service = DB::table("service_request")->where(['buyer_id' => $user_id, 'seller_id' => $user])->get()->toArray();
                 if (!$service) {
@@ -129,7 +128,6 @@ class LocationController extends Controller
         $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
         $user_id = $user_id[0]->id;
         $re = DB::table('service_request')->where(['seller_id' => $user_id])->get();
-        dd($user_id);
         if ($re) {
             jsondata(1, 'success', $re);
         } else {
