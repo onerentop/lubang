@@ -31,7 +31,6 @@ class LocationController extends Controller
         $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
         $user_id = $user_id[0]->id;
         $re = DB::table('location')->where('user_id', '=', $user_id)->get();
-        dd($user_id);
         if ($re) {
             $result = DB::table('location')->where(['user_id' => $user_id])->update(['longitude' => $lg, 'latitude' => $lt, 'address_info' => $address_info]);
         } else {
