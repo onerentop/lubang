@@ -35,3 +35,4 @@ Route::any('Home/getLocation', 'Home\LocationController@getLocation');  //获取
 Route::any('Home/getLocation1', 'Home\LocationController@getLocation1');  //返回他人位置信息
 Route::any('Home/passInfo', 'Home\LocationController@passInfo');  //分享他人位置信息
 Route::any('Home/order', 'Home\LocationController@order');  //接单
+Route::any('Home/getBuyerList', 'Home\LocationController@getBuyerList');  //获取需要帮助的列表

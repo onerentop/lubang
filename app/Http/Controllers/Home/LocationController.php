@@ -77,25 +77,6 @@ class LocationController extends Controller
      */
     public function passInfo()
     {
-//        $tel = Input::get('tel');   //获取当前用户
-//        DB::table('helpInfo')->where('tel', '=', $tel)->delete();
-//        $lg = Input::get('lg');
-//        $lt = Input::get('lt');
-//        $userInfo = $this->getLocation1($lg,$lt);
-//        $userInfo = \GuzzleHttp\json_decode($userInfo);
-//        $res = $userInfo->data;
-//        foreach ($res as $value){
-//            $self_tel = $value->tel;
-//            $lg = $value->longitude;
-//            $lt = $value->latitude;
-//            $status = 1;
-//            $result = DB::table('helpInfo')->insert( ['self_tel' => $self_tel, 'longitude' => $lg, 'latitude' => $lt , 'tel' => $tel,'status' =>$status ]);
-//            if($result){
-//                echo jsondata(1,'存储成功',[]);
-//            }else{
-//                echo jsondata(0,'存储失败',[]);
-//            }
-//        }
         $tel = Input::get('tel');
         $money = Input::get('money');
         $fault = Input::get('fault');
@@ -127,6 +108,23 @@ class LocationController extends Controller
                     echo jsondata(0, '存储失败', []);
                 }
             }
+        }
+    }
+
+    /**
+     * 查询待服务列表
+     * @return array
+     */
+    public function getBuyerList()
+    {
+        $tel = Input::get('tel');
+        $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
+        $user_id = $user_id[0]->id;
+        $re = DB::table('service_request')->where(['seller_id' => $user_id])->get();
+        if ($re) {
+            jsondata(1, 'success', $re);
+        } else {
+            jsondata(0, 'faile', []);
         }
     }
 
