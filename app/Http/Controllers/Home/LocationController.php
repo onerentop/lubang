@@ -129,7 +129,7 @@ class LocationController extends Controller
         $user_id = $user_id[0]->id;
         $re = DB::table('service_request')->where(['seller_id' => $user_id])->get()->toArray();
         if ($re) {
-            return jsondata(1, 'success', $re);
+            return jsondata(1, 'success', [$re, $tel]);
         } else {
             return jsondata(0, 'faile', []);
         }
