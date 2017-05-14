@@ -36,3 +36,5 @@ Route::any('Home/getLocation1', 'Home\LocationController@getLocation1');  //返�
 Route::any('Home/passInfo', 'Home\LocationController@passInfo');  //分享他人位置信息
 Route::any('Home/order', 'Home\LocationController@order');  //接单
 Route::any('Home/getBuyerList', 'Home\LocationController@getBuyerList');  //获取需要帮助的列表
+
+Route::any('Home/create_bill', 'Home\BillController@create_bill');  //创建订单

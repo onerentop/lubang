@@ -5,9 +5,24 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class BillController extends Controller
 {
+    /**
+     * 订单创建
+     * @param $user_name
+     * @return array|string
+     */
+    public function create_bill()
+    {
+        $service_request_id = Input::get('service_request_id');
+        $re = DB::table('service_request')->where(['id' => $service_request_id])->get()->toArray();
+        dd($re);
+        $time = date("Y-m-d H:i:s");
+//        DB::table()->insert(['buyer_id'=> ,'seller_id'=> ,'money'=> ,'time'=>$time ,'status'=>1]);
+    }
+
     //查询用户账单
     public function select_user_bill($user_name)
     {
