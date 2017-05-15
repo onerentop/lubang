@@ -21,7 +21,7 @@ class BillController extends Controller
         $time = date("Y-m-d H:i:s");
         $res = DB::table('indent')->insertGetId(['buyer_id' => $re[0]->buyer_id, 'seller_id' => $re[0]->seller_id, 'money' => $re[0]->money, 'time' => $time, 'status' => 1]);
         if ($res) {
-            return jsondata(1, 'success', $res);
+            return jsondata(1, 'success', ['id' => $res]);
         } else {
             return jsondata(0, 'faile', []);
         }
