@@ -18,14 +18,24 @@ class BillController extends Controller
     {
         $service_request_id = Input::get('service_request_id');
         $re = DB::table('service_request')->where(['id' => $service_request_id])->get()->toArray();
-//        dd($re);
         $time = date("Y-m-d H:i:s");
         $res = DB::table('indent')->insert(['buyer_id' => $re[0]->buyer_id, 'seller_id' => $re[0]->seller_id, 'money' => $re[0]->money, 'time' => $time, 'status' => 1]);
+        dd($res);
         if ($res) {
             return jsondata(1, 'success', []);
         } else {
             return jsondata(0, 'faile', []);
         }
+    }
+
+    /**
+     * 取消订单
+     * @param $user_name
+     * @return array|string
+     */
+    public function del_bill()
+    {
+
     }
 
     //查询用户账单
