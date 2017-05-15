@@ -43,6 +43,22 @@ class BillController extends Controller
 
     }
 
+    /**
+     * 订单展示
+     * @param $user_name
+     * @return array|string
+     */
+    public function put_bill()
+    {
+        $indent_id = Input::get('indent_id');
+        $result = DB::table('indent')->where(['id' => $indent_id])->get()->toArray();
+        if ($result) {
+            return jsondata(1, 'success', $result);
+        } else {
+            return jsondata(0, 'faile', []);
+        }
+    }
+
     //查询用户账单
     public function select_user_bill($user_name)
     {
