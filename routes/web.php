@@ -38,3 +38,4 @@ Route::any('Home/order', 'Home\LocationController@order');  //接单
 Route::any('Home/getBuyerList', 'Home\LocationController@getBuyerList');  //获取需要帮助的列表
 
 Route::any('Home/create_bill', 'Home\BillController@create_bill');  //创建订单
+Route::any('Home/del_bill', 'Home\BillController@del_bill');  //取消订单
