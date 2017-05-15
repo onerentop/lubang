@@ -39,10 +39,7 @@ class BillController extends Controller
 
         $old_time = strtotime($old_time[0]->time);
         $time = time();
-//        dd($old_time, '-----', $time);
-
-//        dd($time - $old_time);
-        if ($time - $old_time > 10) {
+        if ($time - $old_time > 300) {
             return jsondata(-1, 'faile', []);
         }
         $result = DB::table('indent')->where(['id' => $indent_id])->update(['status' => -1]);
