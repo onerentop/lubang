@@ -127,6 +127,10 @@ class LocationController extends Controller
         $tel = Input::get('tel');
         $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
         $user_id = $user_id[0]->id;
+        $indent = DB::table("indent")->where(['seller_id' => $user_id, 'status' => 1])->get()->toArray();
+        if ($indent) {
+            return jsondata(-1, '已有订单', [$indent]);
+        }
         $re = DB::table('service_request')->join('users', 'users.id', '=', 'service_request.buyer_id')->select('service_request.*', 'users.tel')->where(['seller_id' => $user_id])->get()->toArray();
         if ($re) {
             return jsondata(1, 'success', $re);
