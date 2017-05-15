@@ -19,6 +19,11 @@ class BillController extends Controller
         $service_request_id = Input::get('service_request_id');
         $re = DB::table('service_request')->where(['id' => $service_request_id])->get()->toArray();
         $time = date("Y-m-d H:i:s");
+
+        $indent = DB::table("indent")->where(['buyer_id' => $re[0]->buyer_id, 'seller_id' => $re[0]->seller_id, 'status' => 1])->get()->toArray();
+        if ($indent) {
+            return jsondata(-1, '已有订单', [$indent]);
+        }
         $res = DB::table('indent')->insertGetId(['buyer_id' => $re[0]->buyer_id, 'seller_id' => $re[0]->seller_id, 'money' => $re[0]->money, 'time' => $time, 'status' => 1]);
         if ($res) {
             return jsondata(1, 'success', ['id' => $res]);
