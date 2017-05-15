@@ -56,8 +56,8 @@ class BillController extends Controller
             ->join('users as seller', 'users.id', '=', 'indent.seller_id')
             ->select(
                 'indent.*',
-                'buyer.name',
-                'seller.name'
+                'buyer.username',
+                'seller.username'
             )
             ->get()->toArray();
         if ($result) {
