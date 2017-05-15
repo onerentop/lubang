@@ -37,8 +37,11 @@ class BillController extends Controller
         $indent_id = Input::get('indent_id');
         $old_time = DB::table('indent')->where(['id' => $indent_id])->select('time')->get()->toArray();
         dd($old_time);
-        strtotime('2010-03-24 08:15:42');
-        $time = date("Y-m-d H:i:s");
+        $old_time = strtotime($old_time[0]->time);
+        $time = time();
+        if ($time - $old_time > 300000) {
+            return jsondata(-1, 'faile', []);
+        }
         $result = DB::table('indent')->where(['id' => $indent_id])->update(['status' => -1]);
         if ($result) {
             return jsondata(1, 'success', []);
