@@ -39,6 +39,7 @@ class BillController extends Controller
         if ($result) {
             return jsondata(1, 'success', []);
         }
+        dd($result);
         return jsondata(0, 'faile', []);
 
     }
