@@ -39,7 +39,7 @@ class BillController extends Controller
 
         $old_time = strtotime($old_time[0]->time);
         $time = time();
-        dd($old_time, $time);
+        dd($old_time, '-----', $time);
 
 //        dd($time - $old_time);
         if ($time - $old_time > 1000) {
