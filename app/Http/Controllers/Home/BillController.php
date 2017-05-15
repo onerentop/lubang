@@ -51,7 +51,7 @@ class BillController extends Controller
     public function put_bill()
     {
         $indent_id = Input::get('indent_id');
-        $result = DB::table('indent')->where(['id' => $indent_id, 'status' => 1])
+        $result = DB::table('indent')->where(['indent.id' => $indent_id, 'status' => 1])
             ->join('users as buyer', 'users.id', '=', 'indent.buyer_id')
             ->join('users as seller', 'users.id', '=', 'indent.seller_id')
             ->select(
