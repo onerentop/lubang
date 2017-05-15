@@ -34,8 +34,8 @@ class BillController extends Controller
      */
     public function del_bill()
     {
-        $index_id = Input::get('index_id');
-        $result = DB::table('index')->where(['id' => $index_id])->update(['status' => -1]);
+        $indent_id = Input::get('indent_id');
+        $result = DB::table('indent')->where(['id' => $indent_id])->update(['status' => -1]);
         if ($result) {
             return jsondata(1, 'success', []);
         }
