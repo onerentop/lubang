@@ -35,6 +35,10 @@ class BillController extends Controller
     public function del_bill()
     {
         $indent_id = Input::get('indent_id');
+        $old_time = DB::table('indent')->where(['id' => $indent_id])->select('time')->get();
+        dd($old_time);
+        strtotime('2010-03-24 08:15:42');
+        $time = date("Y-m-d H:i:s");
         $result = DB::table('indent')->where(['id' => $indent_id])->update(['status' => -1]);
         if ($result) {
             return jsondata(1, 'success', []);
