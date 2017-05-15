@@ -52,8 +52,8 @@ class BillController extends Controller
     {
         $indent_id = Input::get('indent_id');
         $result = DB::table('indent')->where(['indent.id' => $indent_id, 'status' => 1])
-            ->join('users as buyer', 'users.id', '=', 'indent.buyer_id')
-            ->join('users as seller', 'users.id', '=', 'indent.seller_id')
+            ->join('users as buyer', 'buyer.id', '=', 'indent.buyer_id')
+            ->join('users as seller', 'seller.id', '=', 'indent.seller_id')
             ->select(
                 'indent.*',
                 'buyer.username',
