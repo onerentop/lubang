@@ -51,7 +51,7 @@ class BillController extends Controller
     public function put_bill()
     {
         $indent_id = Input::get('indent_id');
-        $result = DB::table('indent')->where(['id' => $indent_id])->get()->toArray();
+        $result = DB::table('indent')->where(['id' => $indent_id, 'status' => 1])->get()->toArray();
         if ($result) {
             return jsondata(1, 'success', $result);
         } else {
