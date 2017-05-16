@@ -478,7 +478,7 @@ class Ucpaas
         return $data;
     }
 
-    public function huTel($appId, $caller, $callee, $maxAge = 500, $cityId = '0086311', $type = 'json')
+    public function huTel($appId, $caller, $callee, $maxAge = '500', $cityId = '0086311', $type = 'json')
     {
         $url = self::BaseUrl . self::SoftVersion . '/Accounts/' . $this->accountSid . '/safetyCalls/allocNumber?sig=' . $this->getSigParameter();
         if ($type == 'json') {
