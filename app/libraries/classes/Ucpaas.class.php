@@ -490,7 +490,7 @@ class Ucpaas
                 'cityId' => $cityId
             ));
             $body = json_encode($body_json);
-            dd($body);
+
         } elseif ($type == 'xml') {
             $body_xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                         <allocNumber>
@@ -505,6 +505,7 @@ class Ucpaas
             throw new Exception("只能json或xml，默认为json");
         }
         $data = $this->getResult($url, $body, $type, 'post');
+        dd($data);
         return $data;
     }
 } 
