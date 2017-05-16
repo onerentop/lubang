@@ -120,7 +120,7 @@ class Ucpaas
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             $result = curl_exec($ch);
             curl_close($ch);
-            dd($result);
+            dd($body);
         } else {
             $opts = array();
             $opts['http'] = array();
