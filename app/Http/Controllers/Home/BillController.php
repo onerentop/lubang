@@ -83,7 +83,15 @@ class BillController extends Controller
         $tel = Input::get('tel');
         $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
         $user_id = $user_id[0]->id;
-        $indent = DB::table("indent")->where(['seller_id' => $user_id])->get()->toArray();
+        $indent = DB::table("indent")->where(['seller_id' => $user_id])
+            ->join('users as buyer', 'buyer.id', '=', 'indent.buyer_id')
+            ->join('users as seller', 'seller.id', '=', 'indent.seller_id')
+            ->select(
+                'indent.*',
+                'buyer.username as buyer_username',
+                'seller.username as seller_username'
+            )
+            ->get()->toArray();
         if ($indent) {
             return jsondata(1, 'success', $indent);
         } else {
