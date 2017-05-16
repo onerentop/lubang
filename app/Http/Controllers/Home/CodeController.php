@@ -56,12 +56,12 @@ class CodeController extends Controller
      */
     public function hu($caller, $callee)
     {
-        if (!isset($tel) && empty($tel)) {
-            $result = '手机号错误';
+        if (!isset($caller) && empty($caller)) {
+            $result = '主叫号码错误';
             return $result;
         }
-        if (!isset($pa) && empty($pa)) {
-            $result = '验证码错误';
+        if (!isset($callee) && empty($callee)) {
+            $result = '被叫号码错误';
             return $result;
         }
         //初始化必填
@@ -82,7 +82,6 @@ class CodeController extends Controller
      */
     public function callTel()
     {
-        return 1;
         $this->hu(18131995124, 13932152427);
     }
 
