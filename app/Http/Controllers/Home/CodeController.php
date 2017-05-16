@@ -80,7 +80,7 @@ class CodeController extends Controller
      */
     public function callTel()
     {
-        $this->hu(18131995124, 13932152427);
+        $this->hu('008618131995124', '008613932152427');
     }
 
     /*
