@@ -28,6 +28,22 @@ class BillController extends Controller
     }
 
     /**
+     * 查看订单状态
+     */
+    public function select_bill()
+    {
+        $tel = Input::get('tel');
+        $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
+        $user_id = $user_id[0]->id;
+        $res = DB::table('indent')->where(['buyer_id' => $user_id, 'status' => 1])->get()->toArray();
+        if ($res) {
+            return jsondata(1, 'success', $res);
+        } else {
+            return jsondata(0, 'faile', []);
+        }
+    }
+
+    /**
      * 取消订单
      * @param $user_name
      * @return array|string
