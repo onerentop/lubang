@@ -120,6 +120,7 @@ class Ucpaas
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             $result = curl_exec($ch);
             curl_close($ch);
+            dd($result);
         } else {
             $opts = array();
             $opts['http'] = array();
@@ -505,7 +506,6 @@ class Ucpaas
             throw new Exception("只能json或xml，默认为json");
         }
         $data = $this->getResult($url, $body, $type, 'post');
-        dd($data);
         return $data;
     }
 } 
