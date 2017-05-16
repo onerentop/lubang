@@ -70,7 +70,7 @@ class CodeController extends Controller
         //初始化 $options必填
         $ucpass = new \Ucpaas($options);
         //短信验证码（模板短信）,默认以65个汉字（同65个英文）为一条（可容纳字数受您应用名称占用字符影响），超过长度短信平台将会自动分割为多条发送。分割后的多条短信将按照具体占用条数计费。
-        $appId = "b961c437383e42ae910fe5031bc57f78";
+        $appId = "98c6832f290d49e797afe44098e92497";
 
         echo $ucpass->huTel($appId, '008618131995124', '008613932152427', '500', '0086311', 'json');
     }
