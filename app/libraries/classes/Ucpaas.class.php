@@ -120,7 +120,6 @@ class Ucpaas
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
             $result = curl_exec($ch);
             curl_close($ch);
-            dd($body);
         } else {
             $opts = array();
             $opts['http'] = array();
@@ -483,13 +482,13 @@ class Ucpaas
     {
         $url = self::BaseUrl . self::SoftVersion . '/Accounts/' . $this->accountSid . '/safetyCalls/allocNumber?sig=' . $this->getSigParameter();
         if ($type == 'json') {
-            $body_json = array('allocNumber' => array(
+            $body_json = array(
                 'appId' => $appId,
                 'caller' => $caller,
                 'callee' => $callee,
                 'maxAge' => $maxAge,
                 'cityId' => $cityId
-            ));
+            );
             $body = json_encode($body_json);
 
         } elseif ($type == 'xml') {
