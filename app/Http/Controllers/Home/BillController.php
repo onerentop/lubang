@@ -91,7 +91,7 @@ class BillController extends Controller
                 'buyer.username as buyer_username',
                 'seller.username as seller_username'
             )
-            ->simplePaginate(2);
+            ->simplePaginate(10);
 //            ->get()->toArray();
         if ($indent) {
             return jsondata(1, 'success', $indent);
