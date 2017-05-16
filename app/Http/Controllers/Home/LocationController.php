@@ -55,7 +55,7 @@ class LocationController extends Controller
         $lt = Input::get('lt');
         $lg = $lg + 1;
         $lt = $lt + 1;
-        $result = DB::table('location')->where('longitude', '<', $lg)->where('latitude', '<', $lt)->where(['user_id' => !$user_id])->get()->toArray();
+        $result = DB::table('location')->where('longitude', '<', $lg)->where('latitude', '<', $lt)->where('user_id', '!=', $user_id)->get()->toArray();
         if (!$result)
             return jsondata(0, '查询不到信息', []);
         foreach ($result as $value) {
