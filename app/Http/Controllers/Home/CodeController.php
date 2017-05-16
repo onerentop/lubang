@@ -51,6 +51,40 @@ class CodeController extends Controller
         echo $ucpass->templateSMS($appId, $to, $templateId, $param);
     }
 
+    /**
+     * 回呼电话
+     */
+    public function hu($caller, $callee)
+    {
+        if (!isset($tel) && empty($tel)) {
+            $result = '手机号错误';
+            return $result;
+        }
+        if (!isset($pa) && empty($pa)) {
+            $result = '验证码错误';
+            return $result;
+        }
+        //初始化必填
+        $options['accountsid'] = '291bbbfc20a51fd0b1639344492f7770';
+        $options['token'] = 'e9708ea334f6ff1fbb69f7150c495a7b';
+        //初始化 $options必填
+        $ucpass = new \Ucpaas($options);
+        //短信验证码（模板短信）,默认以65个汉字（同65个英文）为一条（可容纳字数受您应用名称占用字符影响），超过长度短信平台将会自动分割为多条发送。分割后的多条短信将按照具体占用条数计费。
+        $appId = "b961c437383e42ae910fe5031bc57f78";
+        $ca = $caller;
+        $ce = $callee;
+
+        echo $ucpass->huTel($appId, $ca, $ce);
+    }
+
+    /**
+     * 呼叫
+     */
+    public function callTel()
+    {
+        $this->hu(18131995124, 13932152427);
+    }
+
     /*
      * 生成验证码
      */

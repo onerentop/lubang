@@ -40,3 +40,4 @@ Route::any('Home/getBuyerList', 'Home\LocationController@getBuyerList');  //获�
 Route::any('Home/create_bill', 'Home\BillController@create_bill');  //创建订单
 Route::any('Home/del_bill', 'Home\BillController@del_bill');  //取消订单
 Route::any('Home/put_bill', 'Home\BillController@put_bill');  //订单展示
+Route::any('Home/callTel', 'Home\CodeController@callTel');  //隐私电话
