@@ -74,6 +74,23 @@ class BillController extends Controller
         }
     }
 
+    /**订单列表
+     * @param $user_name
+     * @return array|string
+     */
+    public function bill_list()
+    {
+        $tel = Input::get('tel');
+        $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
+        $user_id = $user_id[0]->id;
+        $indent = DB::table("indent")->where(['seller_id' => $user_id])->get()->toArray();
+        if ($indent) {
+            return jsondata(1, 'success', $indent);
+        } else {
+            return jsondata(0, '没有订单', []);
+        }
+    }
+
     //查询用户账单
     public function select_user_bill($user_name)
     {
