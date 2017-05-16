@@ -481,7 +481,6 @@ class Ucpaas
     public function huTel($appId, $caller, $callee, $maxAge = '500', $cityId = '0086311', $type = 'json')
     {
         $url = self::BaseUrl . self::SoftVersion . '/Accounts/' . $this->accountSid . '/safetyCalls/allocNumber?sig=' . $this->getSigParameter();
-        dd($url);
         if ($type == 'json') {
             $body_json = array('allocNumber' => array(
                 'appId' => $appId,
@@ -491,6 +490,7 @@ class Ucpaas
                 'cityId' => $cityId
             ));
             $body = json_encode($body_json);
+            dd($body);
         } elseif ($type == 'xml') {
             $body_xml = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
                         <allocNumber>
