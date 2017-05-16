@@ -73,7 +73,7 @@ class CodeController extends Controller
         $appId = "b961c437383e42ae910fe5031bc57f78";
         $ca = $caller;
         $ce = $callee;
-
+        dd($ce);
         echo $ucpass->huTel($appId, $ca, $ce);
     }
 
