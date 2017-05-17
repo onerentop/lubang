@@ -124,10 +124,13 @@ class BillController extends Controller
         $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
         $user_id = $user_id[0]->id;
         $res = DB::table('indent')->where(['buyer_id' => $user_id, 'status' => 1, 'request_seller' => 1, 'request_buyer' => 1])->get()->toArray();
+        $res1 = DB::table('indent')->where(['buyer_id' => $user_id, 'status' => 1, 'request_seller' => 1])->get()->toArray();
         if ($res) {
             return jsondata(1, 'success', []);
-        } else {
+        } else if ($res1) {
             return jsondata(0, 'faile', []);
+        } else {
+            return jsondata(-1, 'faile', []);
         }
     }
 
@@ -142,10 +145,13 @@ class BillController extends Controller
         $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
         $user_id = $user_id[0]->id;
         $res = DB::table('indent')->where(['seller_id' => $user_id, 'status' => 1, 'request_buyer' => 1, 'request_seller' => 1])->get()->toArray();
+        $res1 = DB::table('indent')->where(['seller_id' => $user_id, 'status' => 1, 'request_buyer' => 1])->get()->toArray();
         if ($res) {
             return jsondata(1, 'success', []);
-        } else {
+        } else if ($res1) {
             return jsondata(0, 'faile', []);
+        } else {
+            return jsondata(-1, 'faile', []);
         }
     }
 
