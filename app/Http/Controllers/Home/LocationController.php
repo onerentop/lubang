@@ -37,9 +37,9 @@ class LocationController extends Controller
             $result = DB::table('location')->insert(['user_id' => $user_id, 'longitude' => $lg, 'latitude' => $lt, 'address_info' => $address_info]);
         }
         if ($result) {
-            echo jsondata(1, '存储成功', []);
+            return jsondata(1, '存储成功', []);
         } else {
-            echo jsondata(0, '存储失败', []);
+            return jsondata(0, '存储失败', []);
         }
     }
 
