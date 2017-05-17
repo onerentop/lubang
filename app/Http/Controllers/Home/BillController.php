@@ -77,7 +77,7 @@ class BillController extends Controller
         $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
         $user_id = $user_id[0]->id;
         $res = DB::table('indent')->where(['buyer_id' => $user_id, 'status' => 1])->update(['request_buyer' => 1]);
-        dd($user_id);
+        dd($res);
         if ($res) {
             return jsondata(1, 'success', []);
         } else {
