@@ -51,3 +51,4 @@ Route::any('Home/select_x_del_bill_request', 'Home\BillController@select_x_del_b
 Route::any('Home/select_x_del_bill_seller_request', 'Home\BillController@select_x_del_bill_seller_request');  //查询seller协商请求
 Route::any('Home/x_del_bill', 'Home\BillController@x_del_bill');  //协商buyer删除订单
 Route::any('Home/x_del_seller_bill', 'Home\BillController@x_del_seller_bill');  //协商seller删除订单
+Route::any('Home/finishIndent', 'Home\BillController@finishIndent');  //确认订单完成

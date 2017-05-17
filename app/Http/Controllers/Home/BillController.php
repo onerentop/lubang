@@ -45,6 +45,19 @@ class BillController extends Controller
     }
 
     /**
+     * 确认订单完成
+     */
+    public function finishIndent()
+    {
+        $indent_id = Input::get('indent_id');
+        $result = DB::table('indent')->where(['id' => $indent_id])->update(['status' => 0]);
+        if ($result) {
+            return jsondata(1, 'success', []);
+        }
+        return jsondata(0, 'faile', []);
+    }
+
+    /**
      * 取消订单
      * @param $user_name
      * @return array|string
