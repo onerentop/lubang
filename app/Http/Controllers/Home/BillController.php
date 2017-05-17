@@ -55,6 +55,7 @@ class BillController extends Controller
 
         $old_time = strtotime($old_time[0]->time);
         $time = time();
+        dd($time - $old_time);
         if ($time - $old_time > 30000) {
             return jsondata(-1, 'faile', []);
         }
