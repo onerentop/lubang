@@ -78,12 +78,25 @@ class BillController extends Controller
         $user_id = $user_id[0]->id;
         $res = DB::table('indent')->where(['buyer_id' => $user_id, 'status' => 1])->update(['request_buyer' => 1]);
         return jsondata(1, 'success', []);
-//        dd($res);
-//        if ($res) {
-//            return jsondata(1, 'success', []);
-//        } else {
-//            return jsondata(0, 'faile', []);
-//        }
+    }
+
+    /**
+     * 查询协商请求
+     * @param $user_name
+     * @return array|string
+     */
+    public function select_x_del_bill_request()
+    {
+        $tel = Input::get('tel');
+        $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
+        $user_id = $user_id[0]->id;
+        $res = DB::table('indent')->where(['buyer_id' => $user_id, 'status' => 1, 'request_seller' => 1])->get()->toArray();
+        if ($res) {
+            return jsondata(1, 'success', []);
+        } else {
+            return jsondata(0, 'faile', []);
+        }
+
     }
 
     /**
