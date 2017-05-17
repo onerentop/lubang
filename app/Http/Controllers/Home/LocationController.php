@@ -113,8 +113,10 @@ class LocationController extends Controller
     {
         $arr = [];
         $lg1 = $lg + 1;
+        $lg2 = $lg - 1;
         $lt1 = $lt + 1;
-        $result = DB::table('location')->where('longitude', '>', $lg)->whereBetween('longitude', [$lg, $lg1])->whereBetween('latitude', [$lt, $lt1])->get();
+        $lt2 = $lt - 1;
+        $result = DB::table('location')->where('longitude', '!=', $lg)->whereBetween('longitude', [$lg2, $lg1])->whereBetween('latitude', [$lt2, $lt1])->get();
         foreach ($result as $value) {
             $arr[] = $value;
         }
