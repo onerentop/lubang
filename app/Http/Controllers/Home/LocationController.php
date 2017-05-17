@@ -73,7 +73,7 @@ class LocationController extends Controller
     public function getBuyerSellerLocation()
     {
         $indent_id = Input::get('indent_id');
-        $res = DB::table('indent')->where(['id' => $indent_id])->select('buyer_id,seller_id')->get()->toArray();
+        $res = DB::table('indent')->where(['id' => $indent_id])->select('buyer_id', 'seller_id')->get()->toArray();
         dd($res);
 
     }
