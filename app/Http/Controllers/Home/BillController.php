@@ -67,6 +67,24 @@ class BillController extends Controller
     }
 
     /**
+     * 提交协商请求
+     * @param $user_name
+     * @return array|string
+     */
+    public function x_del_bill_request()
+    {
+        $tel = Input::get('tel');
+        $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
+        $user_id = $user_id[0]->id;
+        $res = DB::table('indent')->where(['buyer_id' => $user_id, 'status' => 1])->update(['request' => 1]);
+        if ($res) {
+            return jsondata(1, 'success', []);
+        } else {
+            return jsondata(0, 'faile', []);
+        }
+    }
+
+    /**
      * 订单展示
      * @param $user_name
      * @return array|string
