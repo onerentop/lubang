@@ -76,7 +76,11 @@ class LocationController extends Controller
         $re = DB::table('indent')->where(['id' => $indent_id])->select('buyer_id', 'seller_id')->get()->toArray();
         $buyer_location = DB::table('location')->where(['user_id' => $re[0]->buyer_id])->select('longitude', 'latitude')->get()->toArray();
         $seller_location = DB::table('location')->where(['user_id' => $re[0]->seller_id])->select('longitude', 'latitude')->get()->toArray();
-        dd($seller_location);
+        if ($buyer_location && $seller_location) {
+            $arr['start'] = $buyer_location;
+            $arr['end'] = $seller_location;
+            return jsondata(1, 'success', $arr);
+        }
 
     }
 
