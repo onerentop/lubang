@@ -109,6 +109,10 @@ class LocationController extends Controller
         $fault = Input::get('fault');
         $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
         $user_id = $user_id[0]->id;
+        $indent = DB::table('indent')->select('id')->where(['buyer_id' => $user_id, 'status' => 1])->get()->toArray();
+        if ($indent) {
+            return jsondata(-1, '请求已经发送过了！', []);
+        }
         $location_id = DB::table('location')->select('id')->where(['user_id' => $user_id])->get()->toArray();
         $location_id = $location_id[0]->id;
         $res = DB::table('location')->where('user_id', '=', $user_id)->get();
