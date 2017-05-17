@@ -75,7 +75,8 @@ class LocationController extends Controller
         $indent_id = Input::get('indent_id');
         $re = DB::table('indent')->where(['id' => $indent_id])->select('buyer_id', 'seller_id')->get()->toArray();
         $buyer_location = DB::table('location')->where(['user_id' => $re[0]->buyer_id])->select('longitude', 'latitude')->get()->toArray();
-        dd($buyer_location);
+        $seller_location = DB::table('location')->where(['user_id' => $re[0]->seller_id])->select('longitude', 'latitude')->get()->toArray();
+        dd($seller_location);
 
     }
 
