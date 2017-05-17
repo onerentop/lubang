@@ -64,6 +64,20 @@ class LocationController extends Controller
         echo jsondata(1, '位置信息', $arr);
     }
 
+    /**
+     * 获取求助者河北求助者的位置信息
+     * @param $lg
+     * @param $lt
+     * @return array|string
+     */
+    public function getBuyerSellerLocation()
+    {
+        $indent_id = Input::get('indent_id');
+        $res = DB::table('indent')->where(['id' => $indent_id])->select('buyer_id,seller_id')->get()->toArray();
+        dd($res);
+
+    }
+
     /*
     * 获取他人位置信息return
     */

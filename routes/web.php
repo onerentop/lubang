@@ -43,3 +43,4 @@ Route::any('Home/put_bill', 'Home\BillController@put_bill');  //订单展示
 Route::any('Home/callTel', 'Home\CodeController@callTel');  //隐私电话
 Route::any('Home/bill_list', 'Home\BillController@bill_list');  //隐私电话
 Route::any('Home/select_bill', 'Home\BillController@select_bill');  //查看订单状态
+Route::any('Home/getBuyerSellerLocation', 'Home\LocationController@getBuyerSellerLocation');  //获取救助者与被救助者位置信息
