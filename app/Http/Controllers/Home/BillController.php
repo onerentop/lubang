@@ -132,7 +132,7 @@ class BillController extends Controller
     }
 
     /**
-     * 协商删除订单
+     * 协商buyer删除订单
      * @param $user_name
      * @return array|string
      */
@@ -140,6 +140,23 @@ class BillController extends Controller
     {
         $indent_id = Input::get('indent_id');
         $result = DB::table('indent')->where(['id' => $indent_id])->update(['status' => -2]);
+        if ($result) {
+            return jsondata(1, 'success', []);
+        }
+        return jsondata(0, 'faile', []);
+    }
+
+    /**
+     * 协商seller删除订单
+     * @param $user_name
+     * @return array|string
+     */
+    public function x_del_seller_bill()
+    {
+        $tel = Input::get('tel');
+        $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
+        $user_id = $user_id[0]->id;
+        $result = DB::table('indent')->where(['seller_id' => $user_id, 'status' => 1])->update(['status' => -2]);
         if ($result) {
             return jsondata(1, 'success', []);
         }
