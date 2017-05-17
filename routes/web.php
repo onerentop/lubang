@@ -46,5 +46,6 @@ Route::any('Home/select_bill', 'Home\BillController@select_bill');  //查看订�
 Route::any('Home/getBuyerSellerLocation', 'Home\LocationController@getBuyerSellerLocation');  //获取救助者与被救助者位置信息
 Route::any('Home/x_del_bill_request', 'Home\BillController@x_del_bill_request');  //提交buyer协商请求
 Route::any('Home/x_del_bill_seller_request', 'Home\BillController@x_del_bill_seller_request');  //提交seller协商请求
-Route::any('Home/select_x_del_bill_request', 'Home\BillController@select_x_del_bill_request');  //查询协商请求
+Route::any('Home/select_x_del_bill_request', 'Home\BillController@select_x_del_bill_request');  //查询buyer协商请求
+Route::any('Home/select_x_del_bill_seller_request', 'Home\BillController@select_x_del_bill_seller_request');  //查询seller协商请求
 Route::any('Home/x_del_bill', 'Home\BillController@x_del_bill');  //协商删除订单
