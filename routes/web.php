@@ -44,6 +44,7 @@ Route::any('Home/callTel', 'Home\CodeController@callTel');  //隐私电话
 Route::any('Home/bill_list', 'Home\BillController@bill_list');  //隐私电话
 Route::any('Home/select_bill', 'Home\BillController@select_bill');  //查看订单状态
 Route::any('Home/getBuyerSellerLocation', 'Home\LocationController@getBuyerSellerLocation');  //获取救助者与被救助者位置信息
+Route::any('Home/getBuyerBuyerLocation', 'Home\LocationController@getBuyerBuyerLocation');  //获取救助者与被救助者位置信息
 Route::any('Home/x_del_bill_request', 'Home\BillController@x_del_bill_request');  //提交buyer协商请求
 Route::any('Home/x_del_bill_seller_request', 'Home\BillController@x_del_bill_seller_request');  //提交seller协商请求
 Route::any('Home/select_x_del_bill_request', 'Home\BillController@select_x_del_bill_request');  //查询buyer协商请求

@@ -84,6 +84,28 @@ class LocationController extends Controller
 
     }
 
+    /**
+     * 获取求助者的位置信息
+     * @param $lg
+     * @param $lt
+     * @return array|string
+     */
+    public function getBuyerBuyerLocation()
+    {
+        $tel = Input::get('tel');
+        $user_id = DB::table('users')->select('id')->where(['tel' => $tel])->get()->toArray();
+        $user_id = $user_id[0]->id;
+        $re = DB::table('indent')->where(['seller_id' => $user_id, 'status' => 1])->select('buyer_id', 'seller_id')->get()->toArray();
+        $buyer_location = DB::table('location')->where(['user_id' => $re[0]->buyer_id])->select('longitude', 'latitude')->get()->toArray();
+        $seller_location = DB::table('location')->where(['user_id' => $re[0]->seller_id])->select('longitude', 'latitude')->get()->toArray();
+        if ($buyer_location && $seller_location) {
+            $arr['start'] = $buyer_location;
+            $arr['end'] = $seller_location;
+            return jsondata(1, 'success', $arr);
+        }
+
+    }
+
     /*
     * 获取他人位置信息return
     */
