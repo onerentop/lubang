@@ -105,7 +105,7 @@ class CodeController extends Controller
         $tel = Input::get('tel');
         $results = DB::select('SELECT * FROM (SELECT  * FROM `lb_verify`  ORDER BY id DESC LIMIT 1) AS a WHERE code =? and tel = ?', [$code, $tel]);
         if ($results) {
-            $re = DB::table('users')->where(['tel' => $tel])->get();
+            $re = DB::table('users')->where(['tel' => $tel])->get()->toArray();
             if (!$re) {
                 DB::table('users')->insert(['tel' => $tel, 'username' => $tel]);
             }
